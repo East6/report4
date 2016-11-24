@@ -1,7 +1,10 @@
 package jp.ac.uryukyu.ie.e165714;
 
 /**
- * Created by yonaminehigashi on 2016/11/22.
+ *  String name; //敵の名前
+ *  int hitPoint; //敵のHP
+ *  int attack; //敵の攻撃力
+ *  boolean dead; //敵の生死状態。true=死亡。
  */
 public class LivingThing {
     //フィールド変数
@@ -11,6 +14,12 @@ public class LivingThing {
     boolean dead;
 
     //コンストラクタ
+    /**
+     *  String name; //敵の名前
+     *  int hitPoint; //敵のHP
+     *  int attack; //敵の攻撃力
+     *  boolean dead; //敵の生死状態。true=死亡。
+     */
     public LivingThing (String name, int hitPoint,int attack){
         this.name=name;
         this.hitPoint=hitPoint;
@@ -23,7 +32,9 @@ public class LivingThing {
     public boolean isDead(){return dead;}
 
     public String getName(){return name;}
-
+    /**
+     * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
+     */
     public void attack(LivingThing opponent){
         if (dead==false) {
             int damage = (int) (Math.random() * attack);
@@ -33,7 +44,10 @@ public class LivingThing {
         }
 
     }
-
+    /**
+     * 自身へ攻撃されたときのダメージ処理をするメソッド。
+     * 指定されたダメージを hitPoint から引き、死亡判定を行う。
+     */
 
     public void wounded(int damage){
         hitPoint -= damage;
